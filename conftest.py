@@ -1,6 +1,5 @@
 import pytest
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
 from locators import Locators
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -8,10 +7,9 @@ import data
 
 @pytest.fixture(scope='function')
 def get_empty_driver():
-    service = Service(executable_path='/home/user/chromedriver/chromedriver')
     options = webdriver.ChromeOptions()
     options.add_argument('--windows-size=1920,1080')
-    chrome_driver = webdriver.Chrome(service=service, options=options)
+    chrome_driver = webdriver.Chrome(options=options)
     chrome_driver.maximize_window()
 
     yield chrome_driver
